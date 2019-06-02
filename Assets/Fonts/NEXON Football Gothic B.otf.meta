@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 49d3f8b8f0fe24208857facf461460e5
+guid: 2f817adf76acb4989a9c5db6b61fd03c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: BM JUA_TTF
+  fontName: NEXON Football Gothic
   fontNames:
-  - BM JUA_TTF
+  - NEXON Football Gothic
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

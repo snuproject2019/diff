@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 49706d708886d46e59899a83a3ce7555
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: NEXON Football Gothic
+  fontNames:
+  - NEXON Football Gothic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2f817adf76acb4989a9c5db6b61fd03c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
