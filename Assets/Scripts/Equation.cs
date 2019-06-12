@@ -10,14 +10,6 @@ public class Equation : MonoBehaviour
         this.eq = eq;
     }
     public void Start(){
-        Eq  res= new Eq("d", new Eq("^", new Eq("e"), new Eq("sin", new Eq("^", new Eq("x"), new Eq("2")))));
-        //res.dsubstitute(new Eq("sin(^(x,2))"));
-        Debug.Log(res.print());
-        //res.dunsubstitute(new Eq("sin(^(x,2))"));
-        Debug.Log(res.print());
-        foreach(Eq x in res.split()){
-            //Debug.Log(x.value);
-        }
     }
 }
 
@@ -32,9 +24,9 @@ public class Eq{
     }
     public string print(){
         if(operand2!=null){
-            return "(" + operand1.print() + operat + operand2.print() + ")";
+            return "{{" + operand1.print() +"}"+ operat + "{"+operand2.print() + "}}";
         }else if(operand1!=null){
-            return operat + "(" + operand1.print() + ")";
+            return operat + "{" + operand1.print() + "}";
         }else{
             return operat;
         }

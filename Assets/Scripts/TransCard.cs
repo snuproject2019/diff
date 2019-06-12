@@ -23,6 +23,8 @@ public class TransCard : MonoBehaviour
         text.text = eq.print();
     }
     public void substitute(){
-        EC.substitutex(eq);
+        if(EC.gm.myTurn && !EC.gm.solved){
+            EC.substitutex(eq);
+        }
     }
 }

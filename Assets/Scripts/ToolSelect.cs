@@ -23,9 +23,13 @@ public class ToolSelect : MonoBehaviour
         text.text = tool.print();
     }
     public void unsubstitute(){
-        Debug.Log(EC.currentEquation.print());
-        if(tool.lhs.equals(EC.currentEquation.dpart())){
-            EC.unsubstitute(tool.rhs);
+        if(EC.gm.myTurn && !EC.gm.solved){
+            Debug.Log(EC.currentEquation.print());
+            if(tool.lhs.equals(EC.currentEquation.dpart())){
+                EC.unsubstitute(tool.rhs);
+            }else{
+                EC.gm.ProbFailed();
+            }
         }
     }
 }
