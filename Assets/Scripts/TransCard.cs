@@ -7,6 +7,7 @@ public class TransCard : MonoBehaviour
 {
     public Eq eq;
     public Text text;
+    public GameObject selected;
     public EventController EC;
     // Start is called before the first frame update
     void Start()
@@ -21,10 +22,12 @@ public class TransCard : MonoBehaviour
     }
     public void setEq(){
         text.text = eq.print();
+        selected.SetActive(false);
     }
     public void substitute(){
         if(EC.gm.myTurn && !EC.gm.solved){
             EC.substitutex(eq);
+            selected.SetActive(true);
         }
     }
 }

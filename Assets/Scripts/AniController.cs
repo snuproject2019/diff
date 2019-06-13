@@ -12,6 +12,7 @@ public class AniController : MonoBehaviour
     public GameObject meShield;
     public GameObject youShield;
     public GameObject wrong;
+    public GameObject correct;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +50,9 @@ public class AniController : MonoBehaviour
     }
     public void YouShieldBreak(){
         youShield.SetActive(false);
+    }
+    public void Correct(){
+        StartCoroutine(AppearFor(correct,1f));
     }
 
     IEnumerator AppearFor(GameObject o, float seconds){

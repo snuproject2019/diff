@@ -122,6 +122,25 @@ public class Eq{
             return t;
         }
     }
+    public bool find(Eq e){
+        Eq t = new Eq(this.operat, this.operand1, this.operand2);
+        if(t.print()==e.print()){
+            return true;
+        }
+        else{
+            if(operand2!=null){
+                if(t.operand2.find(e)){
+                    return true;
+                };
+            }
+            if(operand1!=null){
+                if(t.operand1.find(e)){
+                    return true;
+                };
+            }
+            return false;
+        }
+    }
 }
 
 public class Tool{

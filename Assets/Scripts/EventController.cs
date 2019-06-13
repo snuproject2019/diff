@@ -43,7 +43,7 @@ public class EventController : MonoBehaviour
             TransCards[i].GetComponent<TransCard>().eq = cards[i+1];
             TransCards[i].GetComponent<TransCard>().setEq();
         }
-        answer = new Eq("d", cards[Random.Range(1, cards.Count-1)]);
+        answer = new Eq("d", cards[Random.Range(1, cards.Count)]);
         problem.text = currentFormula.text + "= ? * " + answer.print();
 
     }
@@ -71,9 +71,15 @@ public class EventController : MonoBehaviour
         currentEquation = currentEquation.substitute(eqbefore, eqafter);
         currentFormula.text = currentEquation.print();
         fullFormula.text += "\n" + currentEquation.print();
-        if(eqbefore.equals(answer)){
+        if(currentEquation.find(answer)){
             gm.ProbSolved();
-            CreateProblem();
+            currentFormula.text = "";
+            fullFormula.text = "";
+            //problem.text = "";
+            for(int i=0;i<5;i++){
+                TransCards[i].GetComponent<TransCard>().eq = new Eq("");
+                TransCards[i].GetComponent<TransCard>().setEq();
+            }
         }
     }
 }
