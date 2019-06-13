@@ -24,12 +24,7 @@ public class ToolSelect : MonoBehaviour
     }
     public void unsubstitute(){
         if(EC.gm.myTurn && !EC.gm.solved){
-            Debug.Log(EC.currentEquation.print());
-            if(tool.lhs.equals(EC.currentEquation.dpart())){
-                EC.unsubstitute(tool.rhs);
-            }else{
-                EC.gm.ProbFailed();
-            }
+            EC.unsubstitute(tool.lhs, tool.rhs);
         }
     }
 }

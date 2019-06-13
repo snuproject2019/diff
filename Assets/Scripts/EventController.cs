@@ -14,6 +14,7 @@ public class EventController : MonoBehaviour
     public GameObject[] ToolCards;
     public Eq answer;
     public GameManager gm;
+    public Tester tester;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,31 +49,29 @@ public class EventController : MonoBehaviour
     }
     public void substitutex(Eq eq){
         substitution = eq;
-        Eq newD =  currentEquation.dpart();
-        newD = newD.substitute(eq, new Eq("\\clubsuit"));
-        currentEquation = currentEquation.substitute(currentEquation.dpart(), newD);
+        currentEquation = currentEquation.substitute(eq, new Eq("★"));
         currentFormula.text = currentEquation.print();
         fullFormula.text += "\n" + currentEquation.print();
         SetTools();
     }
     public void SetTools(){
-        ToolCards[0].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("^", new Eq("e"), new Eq("\\clubsuit"))),new Eq("*", new Eq("^", new Eq("e"), new Eq("\\clubsuit")), new Eq("d", new Eq("\\clubsuit"))));
+        ToolCards[0].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("^", new Eq("e"), new Eq("★"))),new Eq("*", new Eq("^", new Eq("e"), new Eq("★")), new Eq("d", new Eq("★"))));
         ToolCards[0].GetComponent<ToolSelect>().setTool();
-        ToolCards[1].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("sin", new Eq("\\clubsuit"))),new Eq("*", new Eq("cos", new Eq("\\clubsuit")), new Eq("d", new Eq("\\clubsuit"))));
+        ToolCards[1].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("sin", new Eq("★"))),new Eq("*", new Eq("cos", new Eq("★")), new Eq("d", new Eq("★"))));
         ToolCards[1].GetComponent<ToolSelect>().setTool();
-        ToolCards[2].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("^", new Eq("\\clubsuit"), new Eq("2"))),new Eq("*", new Eq("2"), new Eq("*", new Eq("x"), new Eq("d", new Eq("\\clubsuit")))));
+        ToolCards[2].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("^", new Eq("★"), new Eq("2"))),new Eq("*", new Eq("2"), new Eq("*", new Eq("x"), new Eq("d", new Eq("★")))));
         ToolCards[2].GetComponent<ToolSelect>().setTool();
-        ToolCards[3].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("*", new Eq("3"), new Eq("\\clubsuit"))),new Eq("*", new Eq("3"), new Eq("d", new Eq("\\clubsuit"))));
+        ToolCards[3].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("*", new Eq("3"), new Eq("★"))),new Eq("*", new Eq("3"), new Eq("d", new Eq("★"))));
         ToolCards[3].GetComponent<ToolSelect>().setTool();
-        ToolCards[4].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("^", new Eq("e"), new Eq("\\clubsuit"))),new Eq("*", new Eq("^", new Eq("e"), new Eq("\\clubsuit")), new Eq("d", new Eq("\\clubsuit"))));
+        ToolCards[4].GetComponent<ToolSelect>().tool = new Tool(new Eq("d", new Eq("^", new Eq("e"), new Eq("★"))),new Eq("*", new Eq("^", new Eq("e"), new Eq("★")), new Eq("d", new Eq("★"))));
         ToolCards[4].GetComponent<ToolSelect>().setTool();
     }
-    public void unsubstitute(Eq eq){
-        eq = eq.substitute(new Eq("\\clubsuit"), substitution);
-        currentEquation = currentEquation.substitute(currentEquation.dpart(), eq);
+    public void unsubstitute(Eq eqbefore, Eq eqafter){
+        eqafter = eqafter.substitute(new Eq("★"), substitution);
+        currentEquation = currentEquation.substitute(eqbefore, eqafter);
         currentFormula.text = currentEquation.print();
         fullFormula.text += "\n" + currentEquation.print();
-        if(currentEquation.dpart().equals(answer)){
+        if(eqbefore.equals(answer)){
             gm.ProbSolved();
             CreateProblem();
         }

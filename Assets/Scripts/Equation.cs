@@ -24,9 +24,9 @@ public class Eq{
     }
     public string print(){
         if(operand2!=null){
-            return "{{" + operand1.print() +"}"+ operat + "{"+operand2.print() + "}}";
+            return "" + operand1.print() + operat + operand2.print() + "";
         }else if(operand1!=null){
-            return operat + "{" + operand1.print() + "}";
+            return operat + "(" + operand1.print() + ")";
         }else{
             return operat;
         }

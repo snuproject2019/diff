@@ -10,8 +10,11 @@ public class GameManager : MonoBehaviour
     public AniController AniManager;
     public bool myTurn;
     public int charged;
+    public Text lv;
     public EventController ec;
+    public float exp = 0.27f;
     public bool solved = false;
+    public GameObject expleft;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,8 @@ public class GameManager : MonoBehaviour
         myMonster.GetComponent<Image>().color = tmp;
         myMonster.hp = 100;
         myMonster.level = 12;
+        lv.text = "LV." + myMonster.level;
+        expleft.transform.localScale = new Vector3(exp, 1, 1);
     }
     public void ChangeTurn(){
         solved=false;
