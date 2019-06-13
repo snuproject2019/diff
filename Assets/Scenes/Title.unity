@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 179910306}
   - component: {fileID: 179910305}
   - component: {fileID: 179910307}
+  - component: {fileID: 179910303}
   m_Layer: 0
   m_Name: EC
   m_TagString: Untagged
@@ -627,6 +628,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &179910303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179910302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d904b1d89358d4feb93838ef776cf2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HelpContentsCommon: []
+  HelpWindow: {fileID: 336622326}
+  ModeSelect: {fileID: 1877284606}
+  LeftButton: {fileID: 314242359}
+  RightButton: {fileID: 1310339000}
+  SoundOnButton: {fileID: 1915802885}
+  SoundOffButton: {fileID: 309714786}
 --- !u!82 &179910305
 AudioSource:
   m_ObjectHideFlags: 0
@@ -988,7 +1008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 179910303}
         m_MethodName: CloseModeSelect
         m_Mode: 1
         m_Arguments:
@@ -2832,8 +2852,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910302}
-        m_MethodName: 
+      - m_Target: {fileID: 179910303}
+        m_MethodName: PracModeStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3499,7 +3519,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 179910303}
         m_MethodName: MoveRightPage
         m_Mode: 1
         m_Arguments:
@@ -4816,12 +4836,12 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 347653425}
-          m_MethodName: 
+        - m_Target: {fileID: 347653427}
+          m_MethodName: Select
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

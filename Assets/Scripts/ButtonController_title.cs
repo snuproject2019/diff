@@ -28,7 +28,7 @@ public class ButtonController_Title : MonoBehaviour
         helpGameModeIndex = 0;
         isCommonHelpStatus = true;
        
-      //ModeSelect.SetActive(false);
+        ModeSelect.SetActive(false);
         SoundOffButton.SetActive(true);
         SoundOnButton.SetActive(false);
 
