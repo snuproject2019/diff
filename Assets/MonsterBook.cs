@@ -56,4 +56,7 @@ public class MonsterBook : MonoBehaviour
             }
         }
     }
+    public void Close(){
+        gameObject.SetActive(false);
+    }
 }
