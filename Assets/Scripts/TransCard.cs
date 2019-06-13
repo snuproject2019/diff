@@ -25,12 +25,12 @@ public class TransCard : MonoBehaviour
         selected.SetActive(false);
     }
     public void substitute(){
-        if(EC.gm.myTurn && !EC.gm.solved && EC.trans){
+        if(EC.gm.myTurn && !EC.gm.solved){
             EC.substitutex(eq);
             selected.SetActive(true);
             EC.trans = !EC.trans;
             EC.gm.toolGlow.SetActive(true);
-            EC.gm.transGlow.SetActive(false);
+            //EC.gm.transGlow.SetActive(false);
         }
     }
 }
