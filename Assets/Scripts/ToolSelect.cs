@@ -23,8 +23,10 @@ public class ToolSelect : MonoBehaviour
         text.text = tool.print();
     }
     public void unsubstitute(){
-        if(EC.gm.myTurn && !EC.gm.solved){
+        if(EC.gm.myTurn && !EC.gm.solved && !EC.trans){
             EC.unsubstitute(tool.lhs, tool.rhs);
+            EC.trans = !EC.trans;
+            EC.gm.toolGlow.SetActive(false);
         }
     }
 }

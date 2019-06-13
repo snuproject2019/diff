@@ -37,10 +37,12 @@ public class ButtonManager : MonoBehaviour
     }
     public void ToTitle(){
         clear.SetActive(false);
+        gameOver.SetActive(false);
         SceneManager.LoadScene(0);
     }
     public void Next(){
         clear.SetActive(false);
+        gameOver.SetActive(false);
         gameManager.NewGame();
     }
     public void SaveCard(){

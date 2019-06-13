@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public bool myTurn;
     public int charged = 0;
     public int saved = 0;
+    public int stage;
+    public int level;
+    public int monsterNum;
     public Text savedText;
     public Text lv;
     public EventController ec;
@@ -23,9 +26,14 @@ public class GameManager : MonoBehaviour
     public GameObject card1selected;
     public GameObject card2selected;
     public GameObject card3selected;
+    public GameObject toolGlow;
+    public GameObject deckGlow;
+    public GameObject transGlow;
+    public Text stageText;
     // Start is called before the first frame update
     void Start()
     {
+        monsterNum = Random.Range(1,128);
         NewGame();
     }
 
@@ -65,6 +73,8 @@ public class GameManager : MonoBehaviour
         AniManager.VsAppear();
         myTurn = true;
         ec.CreateProblem();
+        transGlow.SetActive(true);
+        stageText.text = stage+"";
     }
 
     void InitOpponent(){
@@ -73,22 +83,23 @@ public class GameManager : MonoBehaviour
         tmp.a = 255f;
         yourMonster.GetComponent<Image>().color = tmp;
         yourMonster.hp = 100;
-        yourMonster.level = 5;
+        yourMonster.level = 8;
     }
     void InitMe(){
-        myMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+Random.Range(1,128));
+        myMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+monsterNum);
         Color tmp = yourMonster.GetComponent<Image>().color;
         tmp.a = 255f;
         myMonster.GetComponent<Image>().color = tmp;
         myMonster.hp = 100;
-        myMonster.level = 12;
-        lv.text = "LV." + myMonster.level;
+        myMonster.level = level;
+        lv.text = "LV." + level;
         expleft.transform.localScale = new Vector3(exp, 1, 1);
     }
     public void ChangeTurn(){
         solved=false;
         myTurn = !myTurn;
         if(!myTurn){
+            deckGlow.SetActive(false);
             MonsterTime();
         }
     }
@@ -104,7 +115,7 @@ public class GameManager : MonoBehaviour
             }
             switch(charged){
                     case 0:
-                        dmg = 0;
+                        dmg = 3;
                     break;
                     case 1:
                         dmg = 10+adder;
@@ -148,6 +159,7 @@ public class GameManager : MonoBehaviour
         if(myTurn){
             AniManager.MeHeal();
             myMonster.hp += (10+myMonster.level)*charged;
+            if(charged==0)myMonster.hp +=3;
             if(myMonster.hp>100)myMonster.hp=100;
             charged=0;
         }else{
@@ -170,7 +182,7 @@ public class GameManager : MonoBehaviour
             }
             switch(charged){
                     case 0:
-                        shield = 0;
+                        shield = 3;
                     break;
                     case 1:
                         shield = 10+adder;
@@ -204,9 +216,17 @@ public class GameManager : MonoBehaviour
         }else{
             Defend();
         }
+        yield return new WaitForSeconds(1.5f);
         ec.CreateProblem();
+        transGlow.SetActive(true);
     }
     public void Win(){
+        stage++;
+        exp = exp + Mathf.Max((50-Mathf.Log(level)*3+(Mathf.Log(yourMonster.level)-Mathf.Log(level)*6))/100,0);
+        if(exp>1){
+            exp = exp-1;
+            level++;
+        }
         clear.SetActive(true);
     }
     public void Lose(){
@@ -215,6 +235,7 @@ public class GameManager : MonoBehaviour
     public void ProbSolved(){
         solved=true;
         charged+=1;
+        deckGlow.SetActive(true);
         AniManager.Correct();
     }
     public void ProbFailed(){
