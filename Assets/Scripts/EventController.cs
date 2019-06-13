@@ -74,7 +74,7 @@ public class EventController : MonoBehaviour
         foreach(Eq x in cards){
             Debug.Log(x.print());
         }
-        for(int i=0; i < Mathf.Min(cards.Count-1, 4); i++){
+        for(int i=0; i < Mathf.Min(cards.Count-1, 5); i++){
             TransCards[i].GetComponent<TransCard>().eq = cards[i+1];
             TransCards[i].GetComponent<TransCard>().setEq();
         }
