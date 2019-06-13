@@ -11,8 +11,6 @@ public class ButtonController_Title : MonoBehaviour
     private List<GameObject[]> HelpContents;
     public GameObject HelpWindow;
     public GameObject ModeSelect;
-    public GameObject StoryModeSelect, StoryModeHelp;
-    public GameObject RankPage;
     public GameObject LeftButton;
     public GameObject RightButton;
     public GameObject SoundOnButton;
@@ -29,14 +27,12 @@ public class ButtonController_Title : MonoBehaviour
         HelpContents = new List<GameObject[]>();
         helpGameModeIndex = 0;
         isCommonHelpStatus = true;
+       
+      //ModeSelect.SetActive(false);
+        SoundOffButton.SetActive(true);
+        SoundOnButton.SetActive(false);
 
-        ModeSelect.SetActive(false);
-        RankPage.SetActive(false);
-        StoryModeSelect.SetActive(false);
-        //SoundOffButton.SetActive(true);
-        //SoundOnButton.SetActive(false);
-
-
+        PlayerPrefs.SetInt("isMonsterTypeOn", 1);
         if (!PlayerPrefs.HasKey("isSoundOn"))
             SoundOn();
 
@@ -52,6 +48,10 @@ public class ButtonController_Title : MonoBehaviour
         }
     }
 
+    public void ModeSelectPage()
+    {
+        ModeSelect.SetActive(true);
+    }
 
     public void GameModeStart()
     {
@@ -82,7 +82,7 @@ public class ButtonController_Title : MonoBehaviour
         if (!isCommonHelpStatus)
         {
             helpGameModeIndex = gamemode;
-            clearAll();
+            ClearAll();
             HelpWindow.SetActive(true);
             HelpContents[helpGameModeIndex][page].SetActive(true);
             if (HelpContents[helpGameModeIndex].Length != 1) RightButton.SetActive(true);
@@ -92,7 +92,7 @@ public class ButtonController_Title : MonoBehaviour
         else
         {
             helpGameModeIndex = -1;
-            clearAll();
+            ClearAll();
             HelpWindow.SetActive(true);
             HelpContentsCommon[page].SetActive(true);
             RightButton.SetActive(true);
@@ -105,7 +105,7 @@ public class ButtonController_Title : MonoBehaviour
     {
         if (!isCommonHelpStatus)
         {
-            clearAll();
+            ClearAll();
             LeftButton.SetActive(true);
             if (page == HelpContents[helpGameModeIndex].Length - 2) RightButton.SetActive(false);
             else RightButton.SetActive(true);
@@ -115,13 +115,12 @@ public class ButtonController_Title : MonoBehaviour
         }
         else
         {
-            clearAll();
+            ClearAll();
             if (page == HelpContentsCommon.Length - 1)
             {
                 HelpWindow.SetActive(false);
                 LeftButton.SetActive(false);
                 RightButton.SetActive(false);
-                StoryModeHelp.SetActive(true);
                 isCommonHelpStatus = false;
             }
             else
@@ -140,7 +139,7 @@ public class ButtonController_Title : MonoBehaviour
     {
         if (!isCommonHelpStatus)
         {
-            clearAll();
+            ClearAll();
             RightButton.SetActive(true);
             if (page == 1) LeftButton.SetActive(false);
             else LeftButton.SetActive(true);
@@ -162,9 +161,8 @@ public class ButtonController_Title : MonoBehaviour
         }
     }
 
-    private void clearAll()
+    private void ClearAll()
     {
-        StoryModeHelp.SetActive(false);
         for (int i = 0; i < HelpContentsCommon.Length; i++)
         {
             HelpContentsCommon[i].SetActive(false);
@@ -182,16 +180,10 @@ public class ButtonController_Title : MonoBehaviour
         return;
     }
 
-    public void MoveToHelpSelect()
-    {
-        HelpWindow.SetActive(false);
-        StoryModeHelp.SetActive(true);
-        return;
-    }
 
     public void QuitGame()
     {
-        Application.OpenURL("https://github.com/snuproject2019/torect");
+        Application.OpenURL("");
     }
 
     public void SoundOn()
@@ -221,7 +213,7 @@ public class ButtonController_Title : MonoBehaviour
 
     public void CloseHelpButton()
     {
-        clearAll();
+        ClearAll();
         HelpWindow.SetActive(false);
         isCommonHelpStatus = true;
         return;
