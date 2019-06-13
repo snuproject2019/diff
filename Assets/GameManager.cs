@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public Monster yourMonster;
     public Monster myMonster;
+    public List<int> monsters;
     public AniController AniManager;
     public bool myTurn;
     public int charged = 0;
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public int stage;
     public int level;
     public int monsterNum;
+    public int yourMonsterNum;
     public Text savedText;
     public Text lv;
     public EventController ec;
@@ -33,7 +35,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        monsterNum = Random.Range(1,128);
+        monsters.Add(1);
+        monsters.Add(85);
+        monsters.Add(120);
+        monsters.Add(37);
+        monsters.Add(91);
+        monsters.Add(100);
+        monsters.Add(26);
+        monsters.Add(55);
+        monsterNum = monsters[Random.Range(0,monsters.Count)];
         NewGame();
     }
 
@@ -78,12 +88,13 @@ public class GameManager : MonoBehaviour
     }
 
     void InitOpponent(){
-        yourMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+Random.Range(1,128));
+        yourMonsterNum = Random.Range(1,128);
+        yourMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+yourMonsterNum);
         Color tmp = yourMonster.GetComponent<Image>().color;
         tmp.a = 255f;
         yourMonster.GetComponent<Image>().color = tmp;
         yourMonster.hp = 100;
-        yourMonster.level = 8;
+        yourMonster.level = Random.Range(level-4, level+2);
     }
     void InitMe(){
         myMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+monsterNum);
@@ -226,6 +237,9 @@ public class GameManager : MonoBehaviour
         if(exp>1){
             exp = exp-1;
             level++;
+        }
+        if(!monsters.Exists(x=>x==yourMonsterNum)){
+            monsters.Add(yourMonsterNum);
         }
         clear.SetActive(true);
     }
