@@ -406,7 +406,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: MoveRightPage
         m_Mode: 1
         m_Arguments:
@@ -619,10 +619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 179910306}
   - component: {fileID: 179910305}
-  - component: {fileID: 179910304}
-  - component: {fileID: 179910303}
   - component: {fileID: 179910307}
-  - component: {fileID: 179910308}
   m_Layer: 0
   m_Name: EC
   m_TagString: Untagged
@@ -630,58 +627,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &179910303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179910302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2225cfe0d95b45d48a663ae736a751da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HelpContentsCommon:
-  - {fileID: 0}
-  - {fileID: 0}
-  HelpContentsBiscuit:
-  - {fileID: 0}
-  HelpContentsRec2Square:
-  - {fileID: 0}
-  - {fileID: 0}
-  HelpContentsSimilarity:
-  - {fileID: 0}
-  HelpWindow: {fileID: 0}
-  ModeSelect: {fileID: 1877284606}
-  StoryModeSelect: {fileID: 0}
-  StoryModeHelp: {fileID: 336622326}
-  RankPage: {fileID: 0}
-  LeftButton: {fileID: 314242359}
-  RightButton: {fileID: 1310339000}
-  SoundOnButton: {fileID: 1915802885}
-  SoundOffButton: {fileID: 309714786}
---- !u!114 &179910304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179910302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52004f5053832da499348ca428fc5057, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RankDataWindow: {fileID: 0}
-  RankBoxTop5:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  WaitPlz: {fileID: 0}
-  UserJsonData: 
 --- !u!82 &179910305
 AudioSource:
   m_ObjectHideFlags: 0
@@ -888,31 +833,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &179910308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179910302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 187e5c5366bed2841ae574395e8c577a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  RankDataWindow: {fileID: 0}
-  RankBoxTop5:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  GameOverRankBox:
-  - {fileID: 0}
-  - {fileID: 0}
-  GameOverMyRank: {fileID: 0}
-  WaitPlz: {fileID: 0}
-  UserJsonData: 
 --- !u!1 &187345055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +988,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseModeSelect
         m_Mode: 1
         m_Arguments:
@@ -1232,9 +1152,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 179910303}
-        m_MethodName: SoundOff
-        m_Mode: 1
+      - m_Target: {fileID: 179910305}
+        m_MethodName: set_mute
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1400,7 +1320,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: MoveLeftPage
         m_Mode: 1
         m_Arguments:
@@ -1505,7 +1425,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 179910304}
+      - m_Target: {fileID: 0}
         m_MethodName: GetRankInfo
         m_Mode: 1
         m_Arguments:
@@ -1636,7 +1556,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: MoveLeftPage
         m_Mode: 1
         m_Arguments:
@@ -2657,7 +2577,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseHelpSelectButton
         m_Mode: 1
         m_Arguments:
@@ -2912,8 +2832,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
-        m_MethodName: ChallengeModeStart
+      - m_Target: {fileID: 179910302}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3122,7 +3042,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: ChallengeModeStart
         m_Mode: 1
         m_Arguments:
@@ -3579,7 +3499,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: MoveRightPage
         m_Mode: 1
         m_Arguments:
@@ -3979,7 +3899,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 179910303}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseHelpSelectButton
         m_Mode: 1
         m_Arguments:
@@ -4686,8 +4606,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 179910303}
-        m_MethodName: SoundOn
+      - m_Target: {fileID: 179910302}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4748,6 +4668,7 @@ GameObject:
   - component: {fileID: 1986456434}
   - component: {fileID: 1986456433}
   - component: {fileID: 1986456432}
+  - component: {fileID: 1986456435}
   m_Layer: 5
   m_Name: GameModeButton
   m_TagString: Untagged
@@ -4878,3 +4799,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986456430}
   m_CullTransparentMesh: 0
+--- !u!114 &1986456435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986456430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 347653425}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
