@@ -24,7 +24,7 @@ public class Eq{
     }
     public string print(){
         if(operand2!=null){
-            return "" + operand1.print() + operat + operand2.print() + "";
+            return "(" + operand1.print() + operat + operand2.print() + ")";
         }else if(operand1!=null){
             return operat + "(" + operand1.print() + ")";
         }else{
@@ -38,14 +38,14 @@ public class Eq{
             ;
         }else{
             if(operand1!=null){
-                if(operand1.split().Exists(x=>x.print().Equals("x"))){
+                if(operand1.split().Exists(x=>(x.print().Equals("x")||x.print().Equals("y")))){
                     foreach(Eq x in operand1.split()){
                         res.Add(x);
                     }
                 }
             }
             if(operand2!=null){
-                if(operand2.split().Exists(x=>x.print().Equals("x"))){
+                if(operand2.split().Exists(x=>(x.print().Equals("x")||x.print().Equals("y")))){
                     foreach(Eq x in operand2.split()){
                         res.Add(x);
                     }
@@ -57,25 +57,28 @@ public class Eq{
     public bool equals(Eq e){
         return this.print().Equals(e.print());
     }
-    /* 
-    public void dsubstitute(Eq e, Eq newE){
-        if(this.operat=="d"){
-            operand1.substitute(e, newE);
+     
+    public Eq dsubstitute(Eq e, Eq newE){
+        Eq t = new Eq(this.operat, this.operand1, this.operand2);
+        if(t.operat=="d"){
+            return new Eq("d", operand1.substitute(e, newE));
         }else{
             if(this.operat!=""){
-                if(operand1.dpart().value!=""){
-                    operand1.dsubstitute(e, newE);
+                if(operand1!=null){
+                    if(!operand1.print().Equals(operand1.dsubstitute(e, newE).print())){
+                        return new Eq(this.operat, operand1.dsubstitute(e, newE), this.operand2);
+                    }
                 }
                 if(operand2!=null){
-                    if(operand2.dpart().value!=""){
-                        operand2.dsubstitute(e, newE);
+                    if(!operand2.print().Equals(operand2.dsubstitute(e, newE).print())){
+                        return new Eq(this.operat, operand1, operand2.dsubstitute(e, newE));
                     }
                 }
             }
         }
-        setValue();
+        return t;
     }
-    */
+    
     public Eq dpart(){
         if(this.operat=="d"){
             return this;

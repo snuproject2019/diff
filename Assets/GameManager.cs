@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public Monster yourMonster;
     public Monster myMonster;
+    public List<int> monsters;
     public AniController AniManager;
     public bool myTurn;
     public int charged = 0;
@@ -14,8 +15,10 @@ public class GameManager : MonoBehaviour
     public int stage;
     public int level;
     public int monsterNum;
+    public int yourMonsterNum;
     public Text savedText;
     public Text lv;
+    public Text ylv;
     public EventController ec;
     public float exp = 0.27f;
     public bool solved = false;
@@ -33,7 +36,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        monsterNum = Random.Range(1,128);
+        monsters.Add(1);
+        monsters.Add(85);
+        monsters.Add(120);
+        monsters.Add(37);
+        monsters.Add(91);
+        monsters.Add(100);
+        monsters.Add(26);
+        monsters.Add(55);
+        monsters.Add(88);
+        monsterNum = monsters[Random.Range(0,monsters.Count)];
         NewGame();
     }
 
@@ -78,12 +90,14 @@ public class GameManager : MonoBehaviour
     }
 
     void InitOpponent(){
-        yourMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+Random.Range(1,128));
+        yourMonsterNum = Random.Range(1,128);
+        yourMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+yourMonsterNum);
         Color tmp = yourMonster.GetComponent<Image>().color;
         tmp.a = 255f;
         yourMonster.GetComponent<Image>().color = tmp;
         yourMonster.hp = 100;
-        yourMonster.level = 8;
+        yourMonster.level = Random.Range(level-4, level+2);
+        ylv.text = "LV." + yourMonster.level;
     }
     void InitMe(){
         myMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+monsterNum);
@@ -111,7 +125,7 @@ public class GameManager : MonoBehaviour
             if(myMonster.level > yourMonster.level){
                 adder = (myMonster.level-yourMonster.level)*3;
             }else{
-                adder = -(myMonster.level-yourMonster.level)*3;
+                adder = (myMonster.level-yourMonster.level)*3;
             }
             switch(charged){
                     case 0:
@@ -121,10 +135,10 @@ public class GameManager : MonoBehaviour
                         dmg = 10+adder;
                     break;
                     case 2:
-                        dmg = 10+adder*3;
+                        dmg = (10+adder)*3;
                     break;
                     case 3:
-                        dmg = 10+adder*5;
+                        dmg = (10+adder)*5;
                     break;
             }
             yourMonster.hp -= Mathf.Max(dmg-yourMonster.shield, 0);
@@ -139,7 +153,7 @@ public class GameManager : MonoBehaviour
         }else{
             AniManager.MeAttack();
             if(myMonster.level > yourMonster.level){
-                adder = (myMonster.level-yourMonster.level)*3;
+                adder = -(myMonster.level-yourMonster.level)*3;
             }else{
                 adder = -(myMonster.level-yourMonster.level)*3;
             }
@@ -207,7 +221,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator MonsterTimeWait(){
         yield return new WaitForSeconds(1.5f);
-        float[] prob = {0.3f, 0.7f, 1f};
+        float[] prob = {0.5f, 0.8f, 1f};
         float sel = Random.Range(0,1f);
         if(sel<prob[0]){
             Attack();
@@ -226,6 +240,9 @@ public class GameManager : MonoBehaviour
         if(exp>1){
             exp = exp-1;
             level++;
+        }
+        if(!monsters.Exists(x=>x==yourMonsterNum)){
+            monsters.Add(yourMonsterNum);
         }
         clear.SetActive(true);
     }
