@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         monsters.Add(100);
         monsters.Add(26);
         monsters.Add(55);
+        monsters.Add(88);
         monsterNum = monsters[Random.Range(0,monsters.Count)];
         NewGame();
     }
