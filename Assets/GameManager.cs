@@ -123,22 +123,22 @@ public class GameManager : MonoBehaviour
         if(myTurn){
             AniManager.YouAttack();
             if(myMonster.level > yourMonster.level){
-                adder = (myMonster.level-yourMonster.level)*3;
+                adder = (myMonster.level-yourMonster.level)*2;
             }else{
-                adder = (myMonster.level-yourMonster.level)*3;
+                adder = (myMonster.level-yourMonster.level);
             }
             switch(charged){
                     case 0:
                         dmg = 3;
                     break;
                     case 1:
-                        dmg = 10+adder;
+                        dmg = 15+adder;
                     break;
                     case 2:
-                        dmg = (10+adder)*3;
+                        dmg = (15+adder)*3;
                     break;
                     case 3:
-                        dmg = (10+adder)*5;
+                        dmg = (15+adder)*5;
                     break;
             }
             yourMonster.hp -= Mathf.Max(dmg-yourMonster.shield, 0);
@@ -153,11 +153,11 @@ public class GameManager : MonoBehaviour
         }else{
             AniManager.MeAttack();
             if(myMonster.level > yourMonster.level){
-                adder = -(myMonster.level-yourMonster.level)*3;
+                adder = -(myMonster.level-yourMonster.level);
             }else{
-                adder = -(myMonster.level-yourMonster.level)*3;
+                adder = -(myMonster.level-yourMonster.level)*2;
             }
-            dmg = 10+adder;
+            dmg = 15+adder;
             myMonster.hp -= Mathf.Max(dmg-myMonster.shield, 0);
             myMonster.shield = 0;
             AniManager.MeShieldBreak();
