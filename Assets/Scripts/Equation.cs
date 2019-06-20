@@ -24,9 +24,12 @@ public class Eq{
     }
     public string print(){
         if(operand2!=null){
-            return "(" + operand1.print() + operat + operand2.print() + ")";
+            if(operat.Equals("/")){
+                return "\\frac "+ "{" + operand1.print() + "} {" + operand2.print() + "}";
+            }
+            return "{{" + operand1.print() + "}" + operat + "{" + operand2.print() + "}}";
         }else if(operand1!=null){
-            return operat + "(" + operand1.print() + ")";
+            return operat + "{(" + operand1.print() + ")}";
         }else{
             return operat;
         }
@@ -154,6 +157,6 @@ public class Tool{
         this.rhs=rhs;
     }
     public string print(){
-        return lhs.print() + " => " + rhs.print();
+        return lhs.print() + " \\rightarrow " + rhs.print();
     }
 }

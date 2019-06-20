@@ -33,19 +33,17 @@ public class GameManager : MonoBehaviour
     public GameObject deckGlow;
     public GameObject transGlow;
     public Text stageText;
+    public RankManager RM;
+    public SoundManager soundManager;
     // Start is called before the first frame update
     void Start()
     {
-        monsters.Add(1);
-        monsters.Add(85);
-        monsters.Add(120);
-        monsters.Add(37);
-        monsters.Add(91);
-        monsters.Add(100);
-        monsters.Add(26);
-        monsters.Add(55);
-        monsters.Add(88);
-        monsterNum = monsters[Random.Range(0,monsters.Count)];
+        monsters = MyData.monsters;
+        level = MyData.level;
+        exp = MyData.exp;
+        Debug.Log(monsters);
+        Debug.Log(monsters.Count);
+        monsterNum = monsters[Random.Range(0,monsters.Count)]+1;
         NewGame();
     }
 
@@ -91,16 +89,16 @@ public class GameManager : MonoBehaviour
 
     void InitOpponent(){
         yourMonsterNum = Random.Range(1,128);
-        yourMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+yourMonsterNum);
+        yourMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/t_character-"+yourMonsterNum);
         Color tmp = yourMonster.GetComponent<Image>().color;
         tmp.a = 255f;
         yourMonster.GetComponent<Image>().color = tmp;
         yourMonster.hp = 100;
-        yourMonster.level = Random.Range(level-4, level+2);
+        yourMonster.level = Random.Range(Mathf.Max(level-4, 1), level+2);
         ylv.text = "LV." + yourMonster.level;
     }
     void InitMe(){
-        myMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/character-"+monsterNum);
+        myMonster.GetComponent<Image>().sprite = Resources.Load<Sprite>("characters/t_character-"+monsterNum);
         Color tmp = yourMonster.GetComponent<Image>().color;
         tmp.a = 255f;
         myMonster.GetComponent<Image>().color = tmp;
@@ -235,6 +233,7 @@ public class GameManager : MonoBehaviour
         transGlow.SetActive(true);
     }
     public void Win(){
+        soundManager.play(soundManager.win);
         stage++;
         exp = exp + Mathf.Max((50-Mathf.Log(level)*3+(Mathf.Log(yourMonster.level)-Mathf.Log(level)*6))/100,0);
         if(exp>1){
@@ -244,21 +243,29 @@ public class GameManager : MonoBehaviour
         if(!monsters.Exists(x=>x==yourMonsterNum)){
             monsters.Add(yourMonsterNum);
         }
+        MyData.level = level;
+        MyData.exp = exp;
+        MyData.monsters = monsters;
+        //THIS LINE
+        //RM.PutRankInfo(level, MyData.getMonsters(), exp);
         clear.SetActive(true);
     }
     public void Lose(){
+        soundManager.play(soundManager.lose);
         gameOver.SetActive(true);
     }
     public void ProbSolved(){
+        soundManager.play(soundManager.right);
         solved=true;
         charged+=1;
         deckGlow.SetActive(true);
         AniManager.Correct();
     }
     public void ProbFailed(){
+        soundManager.play(soundManager.wrong);
         AniManager.Wrong();
         ChangeTurn();
-        ec.CreateProblem();
+        //ec.CreateProblem();
     }
     public void SaveCard(){
         if(charged>0){

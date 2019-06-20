@@ -12,13 +12,21 @@ public class ButtonController_Title : MonoBehaviour
     public GameObject SoundOnButton;
     public GameObject SoundOffButton;
     public GameObject MonsterBook;
+    public RankManager RM;
 
+    void Start(){
+        //THIS LINE
+        //RM.GetRankInfo();
+    }
     public void Help(){
         HelpWindow.SetActive(true);
     }    
     
     public void Book(){
+        //THIS LINE
+        //RM.GetRankInfo();
         MonsterBook.SetActive(true);
+        MonsterBook.GetComponent<MonsterBook>().Set();
     }
     public void SoundOn(){
         gameObject.GetComponent<AudioSource>().mute = false;

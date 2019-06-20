@@ -10,6 +10,9 @@ public class ButtonManager : MonoBehaviour
     public GameObject clear;
     public GameObject gameOver;
     public GameObject monsterSelect;
+    public GameObject SoundOnButton;
+    public GameObject SoundOffButton;
+    public SoundManager soundManager;
     void Start()
     {
         
@@ -23,16 +26,19 @@ public class ButtonManager : MonoBehaviour
     public void Attack(){
         if(gameManager.myTurn && gameManager.solved){
             gameManager.Attack();
+            soundManager.play(soundManager.attack);
         }
     }
     public void Recover(){
         if(gameManager.myTurn && gameManager.solved){
             gameManager.Recover();
+            soundManager.play(soundManager.recover);
         }
     }
     public void Defend(){
         if(gameManager.myTurn && gameManager.solved){
             gameManager.Defend();
+            soundManager.play(soundManager.defend);
         }
     }
     public void ToTitle(){
@@ -48,11 +54,23 @@ public class ButtonManager : MonoBehaviour
     public void SaveCard(){
         if(gameManager.myTurn && gameManager.solved){
             gameManager.SaveCard();
+            soundManager.play(soundManager.cardAdd);
         }
     }
     public void LoadCard(){
         if(gameManager.myTurn && gameManager.solved){
             gameManager.LoadCard();
+            soundManager.play(soundManager.cardRemove);
         }
+    }
+    public void SoundOn(){
+        gameObject.GetComponent<AudioSource>().mute = false;
+        SoundOnButton.SetActive(false);
+        SoundOffButton.SetActive(true);
+    }
+    public void SoundOff(){
+        gameObject.GetComponent<AudioSource>().mute = true;
+        SoundOnButton.SetActive(true);
+        SoundOffButton.SetActive(false);
     }
 }

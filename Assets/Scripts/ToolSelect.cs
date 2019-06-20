@@ -9,9 +9,10 @@ public class ToolSelect : MonoBehaviour
     public Tool tool;
     public Text text;
     public EventController EC;
+    public SoundManager soundManager;
     void Start()
     {
-        
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -27,6 +28,7 @@ public class ToolSelect : MonoBehaviour
             EC.unsubstitute(tool.lhs, tool.rhs);
             EC.trans = !EC.trans;
             EC.gm.toolGlow.SetActive(false);
+            soundManager.play(soundManager.toolSelect);
         }
     }
 }
